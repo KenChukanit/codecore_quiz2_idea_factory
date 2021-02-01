@@ -10,12 +10,15 @@
     </span>
     <% else %>
     <!-- To log in and sign up path if user is not signed in -->
-    <span class="d-sm-flex flex-nowrap nav-text col-md-6">
+    <div class="col-md-12  d-flex  flex-wrap nav-text2">
+    <span class="mr-1" >
         <%= link_to "Sign in", new_session_path %> 
-    
-    
+    </span> 
+   
+    <span  >
         <%= link_to "Sign Up", new_user_path %>
     </span> 
+    </div>
     <% end %>
 </div> 
 
