@@ -4,7 +4,8 @@ class User < ApplicationRecord
     has_secure_password
     has_many :ideas, dependent: :nullify
     has_many :reviews, dependent: :destroy
-
+    has_many :likes
+    has_many :liked_ideas, through: :likes, source: :idea
 
     validates :name, presence: true, length: { maximum: 50 }
     validates :email, presence: true, length: { maximum: 50 }
