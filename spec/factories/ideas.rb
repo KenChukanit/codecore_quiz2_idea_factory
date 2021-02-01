@@ -3,6 +3,6 @@ FactoryBot.define do
     sequence(:title) { |n| Faker::Movies::StarWars.character + " #{n}"}
     body { Faker::Hacker.say_something_smart }
   
-    # association(:user, factory: :user)
+    association(:user, factory: :user)
   end
 end

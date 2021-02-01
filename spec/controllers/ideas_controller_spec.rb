@@ -3,10 +3,10 @@ require 'spec_helper'
 
 RSpec.describe IdeasController, type: :controller do
     describe '#new' do
-        # context 'User Signed in' do
-        #     before do
-        #         session[:user_id] = FactoryBot.create(:user)
-        #     end
+        context 'User Signed in' do
+            before do
+                session[:user_id] = FactoryBot.create(:user)
+            end
             it 'renders new template' do
                 get :new
                 expect(response).to render_template(:new)
@@ -15,22 +15,22 @@ RSpec.describe IdeasController, type: :controller do
                 get :new
                 expect(assigns(:idea)).to be_a_new(Idea)
             end
-        # end
-        # context 'User Not Signed in' do
-        #     before do
-        #         session[:user_id] = nil
-        #     end
-        #     it 'redirect to new session template' do
-        #         get :new
-        #         expect(response).to redirect_to(new_session_path)
-        #     end
-        # end
+        end
+        context 'User Not Signed in' do
+            before do
+                session[:user_id] = nil
+            end
+            it 'redirect to new session template' do
+                get :new
+                expect(response).to redirect_to(new_session_path)
+            end
+        end
     end######    End of #new
     describe '#create' do
-        # context 'User Signed in' do
-        #     before do
-        #         session[:user_id] = FactoryBot.create(:user)
-        #     end
+        context 'User Signed in' do
+            before do
+                session[:user_id] = FactoryBot.create(:user)
+            end
             context 'Valid Parameter' do
                 def valid_request
                     post(:create, params:{idea: FactoryBot.attributes_for(:idea)})
@@ -66,16 +66,16 @@ RSpec.describe IdeasController, type: :controller do
                     expect(response).to render_template(:new)
                 end
             end
-        # end
-        # context 'User Not signed in' do
-        #     def valid_request
-        #         post(:create, params:{idea: FactoryBot.attributes_for(:idea)})
-        #     end
-        #     it 'should redirect to new session path' do
-        #         valid_request
-        #         expect(response).to redirect_to(new_session_path)
-        #     end
-        # end
+        end
+        context 'User Not signed in' do
+            def valid_request
+                post(:create, params:{idea: FactoryBot.attributes_for(:idea)})
+            end
+            it 'should redirect to new session path' do
+                valid_request
+                expect(response).to redirect_to(new_session_path)
+            end
+        end
     end######    End of #create
 
 end
