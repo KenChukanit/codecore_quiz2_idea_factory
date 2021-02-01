@@ -1,0 +1,32 @@
+<div class=' flex-column flex-start mb-4'>
+  <div>
+      <h2 class="mb-4">
+        <%= @idea.title %>
+      </h2>
+      <p class=' d-flex flex-start'>
+        <%= @idea.body %>
+      </p>
+      <div>
+      <small class=' mb-4 d-flex flex-start mr-2'>
+        <em>Created by:   <%= @idea.user.name %> </em>
+      </div>
+      <div>
+      <small class='text-muted mb-4 d-flex flex-start mr-2'>
+        <em>Created:   <%= time_ago_in_words(@idea.created_at) %> ago</em>
+      </small>
+       </div>
+       <small class='text-muted mb-4 d-flex flex-start mr-2'>
+        <em>Updated:   <%= time_ago_in_words(@idea.updated_at) %> ago</em>
+      </small>
+      <br>
+      <br>
+      <%= link_to "Edit", edit_idea_path(@idea), class: 'btn btn-outline-primary '%>
+      <%= link_to("Delete",
+        idea_path(@idea),
+        method: :delete,
+        class: 'btn btn-outline-primary  mr-4',
+        data: { confirm: 'are you sure to delete this idea?' },
+      )
+      %>  
+  </div>
+</div>
