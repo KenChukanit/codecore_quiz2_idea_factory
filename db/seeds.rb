@@ -29,7 +29,7 @@ NUM_OF_IDEAS.times do
     created_at = Faker::Date.backward(days: 30)
     i = Idea.create(
         title: Faker::Hacker.say_something_smart,
-        body: Faker::Cannabis.health_benefit,
+        body: Faker::Lorem.paragraph(sentence_count: 5),
         user: users.sample,
         likers: users.shuffle.slice(0,rand(users.count))
     )
