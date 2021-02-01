@@ -1,36 +1,35 @@
- <div class="flex-row justify-content-end col-md-12 flex-end">  
-    <span>
+ <div class="d-flex flex-row justify-content-end col-md-12 flex-end">  
+    <span class="nav-text ">
     <% if user_signed_in? %>
-    <!-- To Edit path if user is signed in -->
-
         <%=  "Hello #{current_user.name}"%>
-    
-  
-        <%= link_to "Log out", session_path, method: :delete,
+    </span>
+    <span class="nav-text ">
+        <%= link_to "Sign out", session_path, method: :delete,
         data: {confirm: 'Are you sure you want to log out?'}
         %>
-   
+    </span>
     <% else %>
     <!-- To log in and sign up path if user is not signed in -->
+    <span class="d-sm-flex flex-nowrap nav-text col-md-6">
+        <%= link_to "Sign in", new_session_path %> 
     
-        <%= link_to "Log in", new_session_path %> 
-   
-  
+    
         <%= link_to "Sign Up", new_user_path %>
-   
     </span> 
     <% end %>
 </div> 
 
+
+
 <nav class="d-flex justify-content-between mr-4 mt-4 mb-4 nav-post" >
-    <div class=" d-sm-flex flex-row  col-md-8 flex-start  ">
+    <div class=" d-sm-flex flex-row  flex-start  ">
     <!-- To Index Page -->
-        <%= link_to "Idea Factory", ideas_path %>
+        <%= link_to "Idea Factory", ideas_path, class: "btn btn-light nav-text" %>
     </div>
    
-    <div class="flex-row col-md-2 ">
+    <div class="flex-row col-md-4 flex-end">
     <!-- To New Page -->
-        <%= link_to "New Idea", new_idea_path%>
+        <%= link_to "New Idea", new_idea_path, class: "btn btn-light nav-text"%>
     </div>
 </nav>  
 
