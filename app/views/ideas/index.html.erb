@@ -20,6 +20,20 @@
             </h5>
         </div>
     </div>
+
+       <small>
+       <% @like = idea.likes.find_by(user: current_user)%>
+        <% if idea.likes.find_by(user: current_user).present? %>
+        <%= link_to "Liked", like_path(@like),method: :delete  %> 
+        <% else %>
+        <%= link_to 'like', idea_likes_path(idea), method: :post  %> 
+        <% end %> 
+    </small>
+    </small>
+
+     <small>
+            Liked by: <%= idea.likes.count%>
+    </small>
     <hr>
     <%end%>
 </table>
