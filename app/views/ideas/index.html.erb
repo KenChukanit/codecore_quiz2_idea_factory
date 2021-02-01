@@ -5,35 +5,41 @@
     <% @ideas.each do |idea|%>
     <div class="col">
         <div class="col-6 col-md-4"> 
-            <h3>
+            <h4>
             <%= link_to(idea.title, idea_path(idea.id)) %>    
-            </h3>              
+            </h4>              
         </div>
         <div class="col-6 col-md-4"> 
             <h5>
             <%= idea.body %>
             </h5>
         </div>
-        <div class="col-6 col-md-4"> 
-            <h5>
-            <%= idea.user.name %>
-            </h5>
-        </div>
-    </div>
+        <div>
+        <span class="col-6 col-md-4"> 
+            <h6>
+            By <%= idea.user.name %>
+            </h6>
 
-       <small>
-       <% @like = idea.likes.find_by(user: current_user)%>
+         <div class="col-md-12  d-flex justify-content-between flex-row like-text">
+        <% @like = idea.likes.find_by(user: current_user)%>
         <% if idea.likes.find_by(user: current_user).present? %>
         <%= link_to "Liked", like_path(@like),method: :delete  %> 
         <% else %>
-        <%= link_to 'like', idea_likes_path(idea), method: :post  %> 
+        <%= link_to 'Like', idea_likes_path(idea), method: :post  %> 
         <% end %> 
-    </small>
+      
+
+        <span class="col-md-4  d-flex flex-row">
+        Liked Total: <%= idea.likes.count%>
+        <span>
+          </div>
+        </span>
+    </div>
+
+    
     </small>
 
-     <small>
-            Liked by: <%= idea.likes.count%>
-    </small>
+   
     <hr>
     <%end%>
 </table>
