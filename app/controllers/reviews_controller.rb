@@ -13,6 +13,7 @@ class ReviewsController < ApplicationController
         if @review.save
             redirect_to idea_path(@idea), notice: 'Review created!'
         else
+            @reviews=@idea.reviews.order(created_at: :desc)
             render '/ideas/show'
         end
     end
