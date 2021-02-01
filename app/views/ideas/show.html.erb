@@ -30,3 +30,39 @@
       %>  
   </div>
 </div>
+
+<div>
+<h3 class="d-flex flex-start" >Review</h3>
+  <%= form_with model: [@idea, @review], local: true do |f| %>
+  <% if @review.errors.full_messages.each do |msg|%>
+    <li>
+        <%= msg %>
+    </li>
+<% end %>
+<% end %>
+    <div class="form-group mb-4">
+      <%= f.text_area(:body, class: 'form-control', cols: 150, rows: 4)%>
+    </div>
+      <%=f.submit  "Submit", class: 'btn btn-outline-primary d-flex flex-start' %> 
+    <% end %>
+</div>
+<br>
+
+<% @reviews.each do |review|%>  
+<div  class=' d-flex  '>
+    <div class="d-sm-flex align-self-start flex-column ?review-text">
+      <%= review.body %>
+      <span class=" d-sm-flex align-self-start flex-column ?review-time">
+     
+     
+        <em>Reviewed by:   <%= review.user.name %> </em>
+     
+        <small class='text-muted mb-4 d-flex flex-start mr-2'>
+        <em>Reviewed: <%= time_ago_in_words(review.created_at) %> ago</em>
+          ••• 
+        <%= link_to "Delete",idea_review_path(@idea,review), method: :delete,data: {confirm: "Are you sure to delete this review?"} %>
+        </small>
+      </span>
+    </div>
+</div>
+<% end %> 

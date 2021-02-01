@@ -38,7 +38,7 @@ class ReviewsController < ApplicationController
 
     def authorize_user_review!
         @review = Review.find params[:id]
-        redirect_to ideas_path, alert: 'Only the owner is authorized.' unless can?(:crud, @review)
+        redirect_to idea_path(@idea), alert: 'Only the owner is authorized.' unless can?(:crud, @review)
     end
     
 
