@@ -1,0 +1,42 @@
+ <div class="d-flex flex-row justify-content-end col-md-12 flex-end">  
+    <span class="nav-text ">
+    <% if user_signed_in? %>
+        <%=  "Hello #{current_user.name}"%>
+    </span>
+    <span class="nav-text ">
+        <%= link_to "Sign out", session_path, method: :delete,
+        data: {confirm: 'Are you sure you want to log out?'}
+        %>
+    </span>
+    <% else %>
+    <!-- To log in and sign up path if user is not signed in -->
+    <div class="col-md-12  d-flex  flex-wrap nav-text2">
+    <span class="mr-1" >
+        <%= link_to "Sign in", new_session_path %> 
+    </span> 
+   
+    <span  >
+        <%= link_to "Sign Up", new_user_path %>
+    </span> 
+    </div>
+    <% end %>
+</div> 
+
+
+
+ <div class="col-md-12  d-flex justify-content-between flex-row">
+   
+    <!-- To Index Page -->
+        <%= link_to "Idea Factory", ideas_path, class: "btn btn-light nav-text" %>
+
+   
+    <span class="d-flex flex-end col-md-4">
+    <!-- To New Page -->
+        <%= link_to "New Idea", new_idea_path, class: "btn btn-light nav-text"%>
+    </span>
+</div>  
+
+
+<hr>
+
+
