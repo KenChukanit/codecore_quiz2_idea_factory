@@ -1,0 +1,25 @@
+
+
+
+
+    <% @ideas.each do |idea|%>
+    <div class="col">
+        <div class="col-6 col-md-4"> 
+            <h3>
+            <%= link_to(idea.title, idea_path(idea.id)) %>    
+            </h3>              
+        </div>
+        <div class="col-6 col-md-4"> 
+            <h5>
+            <%= idea.body %>
+            </h5>
+        </div>
+        <div class="col-6 col-md-4"> 
+            <h5>
+            <%= idea.user.name %>
+            </h5>
+        </div>
+    </div>
+    <hr>
+    <%end%>
+</table>
