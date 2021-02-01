@@ -17,7 +17,7 @@ class LikesController < ApplicationController
         if !can?(:destroy, like)
             flash[:alert] = 'You can only unlike your liked idea'
         elsif like.destroy
-            flash[:notice] = "Idea unliked"
+            flash[:alert] = "Idea unliked"
         else
             flash[:alert] = "Could not unlike the idea"
         end

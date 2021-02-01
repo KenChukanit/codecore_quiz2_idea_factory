@@ -19,7 +19,7 @@ class ReviewsController < ApplicationController
     
     def destroy
         if @review.destroy
-        redirect_to idea_path(@idea), alert: "Idea deleted"
+        redirect_to idea_path(@idea), alert: "Review deleted"
         else  
             render '/ideas/show'
         end

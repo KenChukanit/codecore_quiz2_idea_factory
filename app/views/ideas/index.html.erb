@@ -23,9 +23,9 @@
          <div class="col-md-12  d-flex justify-content-between flex-row like-text">
         <% @like = idea.likes.find_by(user: current_user)%>
         <% if idea.likes.find_by(user: current_user).present? %>
-        <%= link_to "Liked", like_path(@like),method: :delete  %> 
+        <%= link_to "Liked", like_path(@like),method: :delete , class: 'btn btn-outline-primary ' %> 
         <% else %>
-        <%= link_to 'Like', idea_likes_path(idea), method: :post  %> 
+        <%= link_to 'Like', idea_likes_path(idea), method: :post , class: 'btn btn-outline-primary ' %> 
         <% end %> 
       
 

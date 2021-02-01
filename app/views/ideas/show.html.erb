@@ -1,51 +1,60 @@
 <div class=' flex-column flex-start mb-4'>
   <div>
-      <h2 class="mb-4">
+      <h1 class="mb-4 ">
+      <!-- idea.title-->
         <%= @idea.title %>
-      </h2>
-      <p class=' d-flex flex-start'>
+      </h1>
+      <p class=' d-flex flex-start show-body'>
+      <!-- idea.body-->
         <%= @idea.body %>
       </p>
-      <div>
-      <small class=' mb-4 d-flex flex-start mr-2'>
+      <div class ="mb-2">
+      <!-- user who created the idea-->
         <em>Created by:   <%= @idea.user.name %> </em>
+        <br>
       </div>
-        <small>
-            Liked by: <%= @idea.likes.count%>
-        </small>
-
+      <div class ="mb-2">
+      <!-- total like in the idea-->
+            Liked total: <%= @idea.likes.count%>
+      </div>
       <div>
-      <small class='text-muted mb-4 d-flex flex-start mr-2'>
-        <em>Created:   <%= time_ago_in_words(@idea.created_at) %> ago</em>
-      </small>
-       </div>
-       <small class='text-muted mb-4 d-flex flex-start mr-2'>
-        <em>Updated:   <%= time_ago_in_words(@idea.updated_at) %> ago</em>
-      </small>
-      <br>
-      <br>
-
-     
-    <small>
-        <% if @like.present? %>
-        <%= link_to 'unlike', like_path(@like),method: :delete  %> 
-        <% else %>  
-        <%= link_to 'like', idea_likes_path(@idea), method: :post  %> 
-        <% end %> 
-    </small>
-
-
-      <%= link_to "Edit", edit_idea_path(@idea), class: 'btn btn-outline-primary '%>
-      <%= link_to("Delete",
-        idea_path(@idea),
-        method: :delete,
-        class: 'btn btn-outline-primary  mr-4',
-        data: { confirm: 'are you sure to delete this idea?' },
-      )
-      %>  
+      <!-- idea.created_at-->
+        <small class='text-muted mb-2 d-flex flex-start mr-2'>
+          <em>Created:   <%= time_ago_in_words(@idea.created_at) %> ago</em>
+        </small>
+      </div>
+        <small class='text-muted mb-2 d-flex flex-start mr-2'>
+        <!-- idea.updated_at-->
+          <em>Updated:   <%= time_ago_in_words(@idea.updated_at) %> ago</em>
+        </small>
+      <div class="col-md-6  d-flex justify-content-around flex-row like-text">
+        <span>
+        <!-- link to like or unlike idea -->
+          <% if @like.present? %>
+          <%= link_to 'Unlike', like_path(@like),method: :delete , class: 'btn btn-outline-primary ' %> 
+          <% else %>  
+          <%= link_to 'Like', idea_likes_path(@idea), method: :post , class: 'btn btn-outline-primary ' %> 
+          <% end %> 
+        </span>
+        <span>
+        <!-- link to edit idea -->
+          <%= link_to "Edit", edit_idea_path(@idea), class: 'btn btn-outline-primary '%>
+        </span>
+        <span>
+        <!-- link to delete idea -->
+          <%= link_to("Delete",
+            idea_path(@idea),
+            method: :delete,
+            class: 'btn btn-outline-primary  mr-4',
+            data: { confirm: 'are you sure to delete this idea?' },
+          )
+          %>  
+        </span>
+      </div>
   </div>
 </div>
-
+<!-- Start review form -->
+<hr>
 <div>
 <h3 class="d-flex flex-start" >Review</h3>
   <%= form_with model: [@idea, @review], local: true do |f| %>
@@ -63,18 +72,21 @@
 </div>
 <br>
 
+<h3 class="d-flex flex-start mb-4" >All Reviews</h3>
+<!-- Start review lists in the idea -->
 <% @reviews.each do |review|%>  
 <div  class=' d-flex  '>
-    <div class="d-sm-flex align-self-start flex-column ?review-text">
+    <div class="d-sm-flex align-self-start col-md-12 flex-column show-review mb-2">
+    <!-- review.body -->
       <%= review.body %>
-      <span class=" d-sm-flex align-self-start flex-column ?review-time">
-     
-     
+      <span class=" d-sm-flex align-self-start  flex-column show-review-user mb-2">
+    <!-- user who created review -->
         <em>Reviewed by:   <%= review.user.name %> </em>
-     
-        <small class='text-muted mb-4 d-flex flex-start mr-2'>
+    <!-- review.created_at -->
+        <small class='text-muted mb-2 d-flex flex-start mr-2'>
         <em>Reviewed: <%= time_ago_in_words(review.created_at) %> ago</em>
           ••• 
+    <!-- link to delete review -->      
         <%= link_to "Delete",idea_review_path(@idea,review), method: :delete,data: {confirm: "Are you sure to delete this review?"} %>
         </small>
       </span>
